@@ -5,7 +5,7 @@
  * @return An array of prime factors of n.
  * @customfunction
  */
-function naiveprimefactors(n) {
+function naiveprimefactorization(n) {
   let factors = [1];
   let m = 2;
   while (n != 1) {
@@ -30,7 +30,7 @@ function naiveprimefactors(n) {
  * @return An array of divisors of n.
  * @customfunction
  */
-function naivedivisors(n) {
+function naivefactorization(n) {
   const step = (n%2 === 0) ? 1 : 2;
   const limit = parseInt(n**0.5) + 1;
   let factors = [1];
