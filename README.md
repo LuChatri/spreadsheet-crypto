@@ -2,6 +2,7 @@
 This repo contains a set of Google Sheets add-on functions for encryption and cryptographic analysis.
 Disclaimer: These functions are not written for security and some send data to remote APIs.  DO NOT USE THIS IN SECURITY-CRITICAL APPLICATIONS.
 ## Example
+![](recording.gif)
 ## Installation
 ## Current Functions
 - Encryption
