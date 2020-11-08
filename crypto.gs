@@ -32,7 +32,7 @@ function naivePrimeFactorization(n) {
  */
 function naiveFactorization(n) {
   const step = (n%2 === 0) ? 1 : 2;
-  const limit = parseInt(n**0.5) + 1;
+  const limit = parseInt(n / 2) + 1;
   let factors = [1];
   for (let i = 0; i < limit; i += 2) {
     if (n%i == 0) {
