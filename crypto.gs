@@ -106,3 +106,14 @@ function hash(str, hashMethod, format='hex') {
   return response["Digest"];
 }
 
+
+/**
+ * Converts large decimal number to binary
+ *
+ * @param {str} n The number (as either a string or number) to convert to binary.
+ * @return Binary representation of n.
+ * @customfunction
+ */
+function decimalToBinary(n) {
+  return (BigInt(n) >> BigInt(0)).toString(2);
+}
