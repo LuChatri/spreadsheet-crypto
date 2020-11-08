@@ -110,10 +110,12 @@ function hash(str, hashMethod, format='hex') {
 /**
  * Converts large decimal number to binary
  *
- * @param {str} n The number (as either a string or number) to convert to binary.
- * @return Binary representation of n.
+ * @param {String} n The number (as either a string or number) to convert.
+ *     If n is large, pass it as text so Google Sheets doesn't truncate it.
+ * @param {number} radix The base to convert to.
+ * @return Representation of n in base radix.
  * @customfunction
  */
-function decimalToBinary(n) {
-  return (BigInt(n) >> BigInt(0)).toString(2);
+function decimalToBase(n, radix=2) {
+  return (BigInt(n) >> BigInt(0)).toString(radix);
 }
