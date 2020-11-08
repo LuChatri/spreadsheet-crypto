@@ -79,3 +79,26 @@ function caesarShift(str, n, shiftNonLetters=false) {
   
   return ret;
 }
+
+
+/**
+ * Hash the input value.  NOT NECESSARILY SECURE; queries an external API.
+ *
+ * @param {String} str The text to hash.
+ * @param {String} hashMethod The type of hash to apply.
+ *      Valid options: Blake2b-256, -384, and -512; Blake2s-128 and -256; HighwayHash-64, -128, and -256; MD4; MD5; 
+ *      SHA1, 256, 384, and 512; SHA512-256; SHA3-384 and -512
+ * @param {String, default: "hex"} format The encoding to return the hash in.
+ *      Valid options: hex, base32, base64, base64url
+ * @return The hash of the input value.
+ * @customfunction
+ */
+function hash(str, hashMethod, format='hex') {
+  const url = Utilities.formatString('https://api.hashify.net/hash/%s/%s', hashMethod, format);
+  let opts = {'method': 'post', 'payload': str};
+  let response = UrlFetchApp.fetch(url, opts);
+  response = response.getContentText();
+  response = JSON.parse(response);
+  return response["Digest"];
+}
+
