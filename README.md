@@ -27,6 +27,6 @@ You should now be able to use the functions in your spreadsheet.
      - Hex, Base64, and Base32 formats
      - Anything supported by [the hashify API](https://hashify.net/).
 - Number Manipulation
-  - decimalToBinary - Convert a decimal number to binary.  Suitable for any size number.  For very large numbers, pass *n* as a string or Google Sheets will truncate it.
+  - decimalToBase - Convert a decimal number to any base.  Suitable for any size of number.  For very large numbers, pass *n* as a string or Google Sheets will truncate it.
   - naiveFactorization - Find all factors of a number.  Suitable for numbers within JavaScript's integer limit of 2^53-1.
   - naivePrimeFactorization - Find the prime factors of a number.  Suitable for numbers within JavaScript's integer limit of 2^53-1
