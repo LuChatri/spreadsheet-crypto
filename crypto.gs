@@ -50,10 +50,11 @@ function naiveFactorization(n) {
  *
  * @param {String} str The message to encrypt.
  * @param {number} n Number to shift by.
+ * @param {boolean} shiftNonLetters Whether to shift non-alphabetical characters in the ASCII range.
  * @return The encrypted message.
  * @customfunction
  */
-function caesarShift(str, n) {
+function caesarShift(str, n, shiftNonLetters=false) {
   n %= 26;
   let ret = ""; 
   
@@ -66,7 +67,12 @@ function caesarShift(str, n) {
     } else if (97 <= val && val <= 122) {
       // Lowercase
       val = (val - 97 + n) % 26 + 97;
-    } 
+    } else {
+      // Non-Letters
+      if (shiftNonLetters) {
+        val = (val + n) % 128;
+      }
+    }
     
     ret += String.fromCharCode(val);
   }
