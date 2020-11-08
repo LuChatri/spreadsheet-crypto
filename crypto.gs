@@ -27,23 +27,27 @@ function naivePrimeFactorization(n) {
  * Finds divisors of the input value.
  *
  * @param {number} n The value to factor.
- * @return An array of divisors of n.
+ * @return An unsorted array of divisors of n.
  * @customfunction
  */
 function naiveFactorization(n) {
   const step = (n%2 === 0) ? 1 : 2;
-  const limit = parseInt(n / 2) + 1;
-  let factors = [1];
-  for (let i = 0; i < limit; i += 2) {
+  const limit = parseInt(n**0.5) + 1;
+  let factors = [];
+  let complement;
+  
+  for (let i = 0; i <= limit; i++) {
     if (n%i == 0) {
         factors.push(i);
+     
+      if (i*i != n) {
+        factors.push(parseInt(n / i));
+      }
+      
     }
   }
-  // So factors are ordered lowest to highest.
-  factors.push(n)
   return factors;
 }
-
 
 /**
  * Caesar Shift the input string.
