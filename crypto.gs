@@ -44,3 +44,32 @@ function naiveFactorization(n) {
   return factors;
 }
 
+
+/**
+ * Caesar Shift the input string.
+ *
+ * @param {String} str The message to encrypt.
+ * @param {number} n Number to shift by.
+ * @return The encrypted message.
+ * @customfunction
+ */
+function caesarShift(str, n) {
+  n %= 26;
+  let ret = ""; 
+  
+  for (let i = 0; i < str.length; i++) {
+    let val = str.charCodeAt(i);
+    
+    if (65 <= val && val <= 90) {
+      // Uppercase
+      val = (val - 65 + n) % 26 + 65;
+    } else if (97 <= val && val <= 122) {
+      // Lowercase
+      val = (val - 97 + n) % 26 + 97;
+    } 
+    
+    ret += String.fromCharCode(val);
+  }
+  
+  return ret;
+}
