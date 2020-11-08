@@ -1,53 +1,5 @@
-/**
- * Finds prime factors of the input value.
- *
- * @param {number} n The value to factor.
- * @return An array of prime factors of n.
- * @customfunction
- */
-function naivePrimeFactorization(n) {
-  let factors = [1];
-  let m = 2;
-  while (n != 1) {
-    if (n % m === 0) {
-        factors.push(m);
-        n /= m;
-    } else if (m > parseInt(n/2)) {
-        factors.push(n);
-        break;
-    } else {
-        m++;
-    }
-  }
-  return factors;
-}
+/**     Encryption     */
 
-
-/**
- * Finds divisors of the input value.
- *
- * @param {number} n The value to factor.
- * @return An unsorted array of divisors of n.
- * @customfunction
- */
-function naiveFactorization(n) {
-  const step = (n%2 === 0) ? 1 : 2;
-  const limit = parseInt(n**0.5) + 1;
-  let factors = [];
-  let complement;
-  
-  for (let i = 0; i <= limit; i++) {
-    if (n%i == 0) {
-        factors.push(i);
-     
-      if (i*i != n) {
-        factors.push(parseInt(n / i));
-      }
-      
-    }
-  }
-  return factors;
-}
 
 /**
  * Caesar Shift the input string.
@@ -85,6 +37,9 @@ function caesarShift(str, n, shiftNonLetters=false) {
 }
 
 
+/**     Hashing     */
+
+
 /**
  * Hash the input value.  NOT NECESSARILY SECURE; queries an external API.
  *
@@ -107,6 +62,26 @@ function hash(str, hashMethod, format='hex') {
 }
 
 
+/**     Data Manipulation     */
+
+
+/**
+ * Chunk a string into parts.
+ *
+ * @param {String} data The data to chunk.
+ * @param {number} size Characters per chunk.
+ * @return Array of chunks of data.
+ * @customfunction
+ */
+function chunk(data, size) {
+  let ret = [];
+  for (let i = 0; i < data.length; i += size) {
+    ret.push(data.slice(i, i+size));
+  }
+  return ret;
+}
+
+
 /**
  * Converts large decimal number to binary
  *
@@ -118,4 +93,56 @@ function hash(str, hashMethod, format='hex') {
  */
 function decimalToBase(n, radix=2) {
   return (BigInt(n) >> BigInt(0)).toString(radix);
+}
+
+
+/**
+ * Finds divisors of the input value.
+ *
+ * @param {number} n The value to factor.
+ * @return An unsorted array of divisors of n.
+ * @customfunction
+ */
+function naiveFactorization(n) {
+  const step = (n%2 === 0) ? 1 : 2;
+  const limit = parseInt(n**0.5) + 1;
+  let factors = [];
+  let complement;
+  
+  for (let i = 0; i <= limit; i++) {
+    if (n%i == 0) {
+        factors.push(i);
+     
+      if (i*i != n) {
+        factors.push(parseInt(n / i));
+      }
+      
+    }
+  }
+  return factors;
+}
+
+
+/**
+ * Finds prime factors of the input value.
+ *
+ * @param {number} n The value to factor.
+ * @return An array of prime factors of n.
+ * @customfunction
+ */
+function naivePrimeFactorization(n) {
+  let factors = [1];
+  let m = 2;
+  while (n != 1) {
+    if (n % m === 0) {
+        factors.push(m);
+        n /= m;
+    } else if (m > parseInt(n/2)) {
+        factors.push(n);
+        break;
+    } else {
+        m++;
+    }
+  }
+  return factors;
 }
