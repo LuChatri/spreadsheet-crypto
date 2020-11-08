@@ -17,3 +17,5 @@ Disclaimer: These functions are not written for security and some send data to r
      - Hex, Base64, and Base32 formats
      - Anything supported by [the hashify API](https://hashify.net/).
 - Number Manipulation
+  - naiveFactorization - Find all factors of a number.  Not optimized.
+  - naivePrimeFactorization - Find the prime factors of a number.  Not optimized. 
