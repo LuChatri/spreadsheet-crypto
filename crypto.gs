@@ -62,38 +62,7 @@ function hash(str, hashMethod, format='hex') {
 }
 
 
-/**     Data Manipulation     */
-
-
-/**
- * Chunk a string into parts.
- *
- * @param {String} data The data to chunk.
- * @param {number} size Characters per chunk.
- * @return Array of chunks of data.
- * @customfunction
- */
-function chunk(data, size) {
-  let ret = [];
-  for (let i = 0; i < data.length; i += size) {
-    ret.push(data.slice(i, i+size));
-  }
-  return ret;
-}
-
-
-/**
- * Converts large decimal number to binary
- *
- * @param {String} n The number (as either a string or number) to convert.
- *     If n is large, pass it as text so Google Sheets doesn't truncate it.
- * @param {number} radix The base to convert to.
- * @return Representation of n in base radix.
- * @customfunction
- */
-function decimalToBase(n, radix=2) {
-  return (BigInt(n) >> BigInt(0)).toString(radix);
-}
+/**     Prime Numbers     */
 
 
 /**
@@ -103,7 +72,7 @@ function decimalToBase(n, radix=2) {
  * @return An unsorted array of divisors of n.
  * @customfunction
  */
-function naiveFactorization(n) {
+function factorization(n) {
   const step = (n%2 === 0) ? 1 : 2;
   const limit = parseInt(n**0.5) + 1;
   let factors = [];
@@ -124,15 +93,58 @@ function naiveFactorization(n) {
 
 
 /**
+ * Get a number of primes.
+ *
+ * @param {number} n Number of primes to get.
+ * @param {number} from Inclusive minimum value from which to search for primes.
+ * @return Array of chunks of data.
+ * @customfunction
+ */
+function nPrimes(n, from=0) {
+  let primes = [];
+  let gen = primes_();
+  for (let i = 0; i < n; i++) {
+    primes.push(gen.next().value);
+  }
+  return primes;
+}
+
+
+/**
+ * Generate primes in a range using incremental Sieve of Erastothenes.
+ * @param {number} lower Inclusive minimum number for primes.
+ * @param {number} upper Inclusive maximum number for primes.
+ * @return Array of primes.
+ * @customfunction
+ */
+function primesBetween(lower, upper) {
+  let gen = primes_();
+  let primes = [];
+  let val;
+  while (true) {
+    val = gen.next().value;
+    if (val >= lower) {
+      if (val >= upper) {
+        return primes;
+      }
+      primes.push(val);
+    }
+  }
+}
+
+
+/**
  * Finds prime factors of the input value.
  *
  * @param {number} n The value to factor.
  * @return An array of prime factors of n.
  * @customfunction
  */
-function naivePrimeFactorization(n) {
-  let factors = [1];
-  let m = 2;
+function primeFactorization(n) {
+  let factors = [];
+  let gen = primes_();
+  let m = gen.next().value;
+  
   while (n != 1) {
     if (n % m === 0) {
         factors.push(m);
@@ -141,8 +153,76 @@ function naivePrimeFactorization(n) {
         factors.push(n);
         break;
     } else {
-        m++;
+      m = gen.next().value;
     }
   }
   return factors;
+}
+
+
+/**     Other     */
+
+
+/**
+ * Chunk a string into parts.
+ *
+ * @param {String} data The data to chunk.
+ * @param {number} size Characters per chunk.
+ * @return Array of chunks of data.
+ * @customfunction
+ */
+function chunk(data, size) {
+  let ret = [];
+  for (let i = 0; i < data.length; i += size) {
+    ret.push(data.slice(i, i+size));
+  }
+  return ret;
+}
+
+
+/**
+ * Converts number to a base.
+ *
+ * @param {String} n The number (as either a string or number) to convert.
+ *     If n is large, pass it as text so Google Sheets doesn't truncate it.
+ *     If n is not base 10, prepend 0b, 0x, or another prefix to it.
+ * @param {number} radix The base to convert to.
+ * @return Representation of n in base radix.
+ * @customfunction
+ */
+function strToBase(n, radix=2) {
+  return (BigInt(n) >> BigInt(0)).toString(radix);
+}
+
+
+
+
+/**     Internal     */
+function* primes_() {
+  // Two is prime
+  yield 2
+  
+  let i = 3;
+  let primes = [2];
+  let limit, isPrime;
+  
+  while (true) {
+    limit = parseInt(i**0.5);
+    isPrime = true;
+    
+    for (let p of primes) {
+      if (p > limit) {
+        break;
+      } else if (i%p === 0) {
+        isPrime = false;
+        break;
+      }
+    }
+    
+    if (isPrime) {
+      primes.push(i);
+      yield i;
+    }
+    i += 2;
+  }
 }

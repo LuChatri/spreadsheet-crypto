@@ -14,6 +14,7 @@ These functions are not part of an add-on (yet), so they must be installed manua
 
 You should now be able to use the functions in your spreadsheet.
 ## Current Functions
+caesarShift | naiveFactorization | hash | naivePrimeFactorization,nPrimes,primesBetween | chunk,strToBase
 - Encryption
   - caesarShift - Implements a common Caesar Cipher
 - Hashing
@@ -25,8 +26,12 @@ You should now be able to use the functions in your spreadsheet.
      - SHA1, 256, 384, 512, and 512-256
      - SHA3-384 and -512
      - Hex, Base64, and Base32 formats
-     - Anything supported by [the hashify API](https://hashify.net/).
-- Number Manipulation
-  - decimalToBase - Convert a decimal number to any base.  Suitable for any size of number.  For very large numbers, pass *n* as a string or Google Sheets will truncate it.
-  - naiveFactorization - Find all factors of a number.  Suitable for numbers within JavaScript's integer limit of 2^53-1.
-  - naivePrimeFactorization - Find the prime factors of a number.  Suitable for numbers within JavaScript's integer limit of 2^53-1
+     - Anything supported by [the hashify API](https://hashify.net/)
+- Primes and Factoring
+	 - factorization - Find all factors of a number.  Suitable for numbers within JavaScript's integer limit of 2^53-1.
+	 - nPrimes - Get *n* primes greater than a value.
+	 - primesBetween - Get all primes between two numbers.
+	 - primeFactorization - Find the prime factors of a number.  Suitable for numbers within JavaScript's integer limit of 2^53-1.
+- Other
+  - chunk - Break a string into chunks of a given size.
+  - strToBase - Convert a string to a number of any base.  Suitable for any size of number.  For very large numbers, pass *n* as a string or Google Sheets will truncate it.
