@@ -14,7 +14,6 @@ These functions are not part of an add-on (yet), so they must be installed manua
 
 You should now be able to use the functions in your spreadsheet.
 ## Current Functions
-caesarShift | naiveFactorization | hash | naivePrimeFactorization,nPrimes,primesBetween | chunk,strToBase
 - Encryption
   - caesarShift - Implements a common Caesar Cipher
 - Hashing
