@@ -33,4 +33,5 @@ You should now be able to use the functions in your spreadsheet.
 	 - primeFactorization - Find the prime factors of a number.  Suitable for numbers within JavaScript's integer limit of 2^53-1.
 - Other
   - chunk - Break a string into chunks of a given size.
+  - binaryEditDistance - Find number of bit flips or additions to make two strings equivalent.
   - strToBase - Convert a string to a number of any base.  Suitable for any size of number.  For very large numbers, pass *n* as a string or Google Sheets will truncate it.
