@@ -181,6 +181,40 @@ function chunk(data, size) {
 
 
 /**
+ * Find number of bit flips or additions to make two strings equivalent.
+ *
+ * @param {String} s1 String to calculate distance from.
+ * @param {String} s2 Another string to calculate distance from.
+ * @param {boolean} padToLongestString Whether to include insertions/deletions in edit distance.
+ * @return Edit distance between s1 and s2.
+ * @customfunction
+ */
+function binaryEditDistance(s1, s2, padToLongestString=true) {
+  const strings = [s1, s2].sort(function(a, b){return b.length - a.length});
+  let ret = 0;
+  
+  for (let i = 0; i < strings[0].length; i++) {
+    let c2 = strings[1].charCodeAt(i);
+    if (isNaN(c2)) {
+      if (padToLongestString) {
+        ret += 8;
+        continue;
+      } else {
+        return ret;
+      }
+    }
+    
+    let c1 = strings[0].charCodeAt(i);
+    let diffs = ((c1^c2) >>> 0).toString(2);
+    ret += diffs.split('1').length - 1;
+    
+  }
+  
+  return ret;
+}
+
+
+/**
  * Converts number to a base.
  *
  * @param {String} n The number (as either a string or number) to convert.
