@@ -6,7 +6,7 @@ Disclaimer: These functions are not written for security and some send data to r
 ![](recording.gif)
 ## Installation
 These functions are not part of an add-on (yet), so they must be installed manually.  Still, installation is easy.  From [Google's guide](https://developers.google.com/apps-script/guides/sheets/functions):
-1. Copy crypto.gs to your clipboard.  You can pick and choose which functions you want to include.  You can also download crypto.gs by cloning this repo from the command line: `git clone https://github.com/LuChatri/spreadsheet-crypto.git`
+1. Copy crypto.gs to your clipboard.  You can pick and choose which functions you want to include.  You can also download crypto.gs by cloning this repo from the command line: `git clone https://github.com/LuChatri/spreadsheet-crypto`
 2. Open the spreadsheet you want to add the functions to.
 3. Select the menu item **Tools > Script editor**. If you are presented with a welcome screen, click **Blank Project** on the left to start a new project.
 4. Paste the code into the script editor.
